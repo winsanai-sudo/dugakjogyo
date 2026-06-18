@@ -4,6 +4,34 @@ import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { mbtiTypes } from "@/lib/validation";
 
+const copy = {
+  title: "\ub300\uce58 \ub450\uac01\ud559\uc6d0 \ubb38\ud480 \uc120\uc0dd\ub2d8 \uc9c0\uc6d0",
+  eyebrow: "DUGAK ACADEMY RECRUIT",
+  brand: "\ub450\uac01",
+  badge: "\ubb38\ud480 \uc120\uc0dd\ub2d8 \ucc44\uc6a9",
+  lead:
+    "\ud480\uc774\ub97c \uc815\ud655\ud788 \uc77d\uace0, \ud559\uc0dd\uc758 \uc0ac\uace0\ub97c \ub354 \ub0a0\uce74\ub86d\uac8c \ub9cc\ub4dc\ub294 \uc120\uc0dd\ub2d8\uc744 \uae30\ub2e4\ub9bd\ub2c8\ub2e4.",
+  subLead:
+    "\uac04\uacb0\ud55c \uc815\ubcf4\uc640 \uc774\ub825\uc11c, \uc190\uae00\uc528 \ud480\uc774 1\uc7a5\ub9cc \uc81c\ucd9c\ud558\uba74 \uc9c0\uc6d0\uc774 \uc644\ub8cc\ub429\ub2c8\ub2e4.",
+  name: "\uc774\ub984",
+  namePlaceholder: "\ud64d\uae38\ub3d9",
+  phone: "\uc804\ud654\ubc88\ud638",
+  address: "\uc8fc\uc18c",
+  addressPlaceholder: "\ub3c4\ub85c\uba85 \uc8fc\uc18c\uc640 \uc0c1\uc138 \uc8fc\uc18c",
+  choose: "\uc120\ud0dd\ud574\uc8fc\uc138\uc694",
+  resume: "\uc774\ub825\uc11c \ud30c\uc77c",
+  resumeHint: "PDF, DOC, DOCX, HWP \ud30c\uc77c\uc744 \uc5c5\ub85c\ub4dc\ud560 \uc218 \uc788\uc2b5\ub2c8\ub2e4. \uae30\ubcf8 \uc81c\ud55c\uc740 10MB\uc785\ub2c8\ub2e4.",
+  solution: "\uc190\uae00\uc528 \ud480\uc774 1\uc7a5",
+  solutionHint:
+    "\ud328\ub4dc \ud544\uae30, \ub178\ud2b8 \uc0ac\uc9c4, \uc2a4\uce94\ubcf8 \ubaa8\ub450 \uac00\ub2a5\ud569\ub2c8\ub2e4. PDF, JPG, PNG, WEBP, HEIC \ud30c\uc77c\uc744 \uc5c5\ub85c\ub4dc\ud574\uc8fc\uc138\uc694.",
+  consent:
+    "\uc9c0\uc6d0 \uac80\ud1a0\ub97c \uc704\ud55c \uac1c\uc778\uc815\ubcf4 \uc218\uc9d1 \ubc0f \uc81c\ucd9c \ud30c\uc77c \ubcf4\uad00\uc5d0 \ub3d9\uc758\ud569\ub2c8\ub2e4.",
+  submit: "\uc9c0\uc6d0\uc11c \uc81c\ucd9c",
+  submitting: "\uc81c\ucd9c \uc911...",
+  submitError: "\uc81c\ucd9c \uc911 \ubb38\uc81c\uac00 \ubc1c\uc0dd\ud588\uc2b5\ub2c8\ub2e4.",
+  networkError: "\ub124\ud2b8\uc6cc\ud06c \uc624\ub958\uac00 \ubc1c\uc0dd\ud588\uc2b5\ub2c8\ub2e4. \uc7a0\uc2dc \ud6c4 \ub2e4\uc2dc \uc2dc\ub3c4\ud574\uc8fc\uc138\uc694."
+};
+
 export default function ApplicantPage() {
   const router = useRouter();
   const [error, setError] = useState("");
@@ -25,13 +53,13 @@ export default function ApplicantPage() {
       const result = await response.json();
 
       if (!response.ok) {
-        setError(result.error ?? "제출 중 문제가 발생했습니다.");
+        setError(result.error ?? copy.submitError);
         return;
       }
 
       router.push("/complete");
     } catch {
-      setError("네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+      setError(copy.networkError);
     } finally {
       setIsSubmitting(false);
     }
@@ -40,24 +68,51 @@ export default function ApplicantPage() {
   return (
     <main className="page-shell">
       <section className="hero">
-        <div className="kicker">DUGAK ACADEMY RECRUIT</div>
-        <h1>대치 두각학원 문풀 선생님 지원</h1>
-        <p className="lead">
-          학생의 풀이 과정을 섬세하게 읽고, 정확한 피드백으로 성장을 돕는 선생님을 기다립니다.
-        </p>
+        <div className="brand-row">
+          <div className="brand-mark" aria-hidden="true">
+            D
+          </div>
+          <div>
+            <div className="brand-name">{copy.brand}</div>
+            <div className="kicker">{copy.eyebrow}</div>
+          </div>
+        </div>
+
+        <div className="hero-layout">
+          <div className="hero-copy">
+            <span className="hero-badge">{copy.badge}</span>
+            <h1>{copy.title}</h1>
+            <p className="lead">{copy.lead}</p>
+            <p className="sub-lead">{copy.subLead}</p>
+          </div>
+          <div className="hero-panel" aria-hidden="true">
+            <div className="panel-label">DUGAK STANDARD</div>
+            <div className="panel-score">01</div>
+            <div className="panel-line" />
+            <div className="panel-caption">Precision Feedback · Student Growth</div>
+          </div>
+        </div>
       </section>
 
       <form className="card form-card" onSubmit={handleSubmit}>
         {error ? <div className="alert">{error}</div> : null}
 
+        <div className="form-header">
+          <div>
+            <div className="section-label">APPLICATION</div>
+            <h2>{copy.badge}</h2>
+          </div>
+          <span className="required-note">All fields required</span>
+        </div>
+
         <div className="grid">
           <div className="field">
-            <label htmlFor="name">이름</label>
-            <input id="name" name="name" placeholder="홍길동" required maxLength={40} />
+            <label htmlFor="name">{copy.name}</label>
+            <input id="name" name="name" placeholder={copy.namePlaceholder} required maxLength={40} />
           </div>
 
           <div className="field">
-            <label htmlFor="phone">전화번호</label>
+            <label htmlFor="phone">{copy.phone}</label>
             <input
               id="phone"
               name="phone"
@@ -69,15 +124,15 @@ export default function ApplicantPage() {
           </div>
 
           <div className="field full">
-            <label htmlFor="address">주소</label>
-            <textarea id="address" name="address" placeholder="도로명 주소와 상세 주소" required maxLength={220} />
+            <label htmlFor="address">{copy.address}</label>
+            <textarea id="address" name="address" placeholder={copy.addressPlaceholder} required maxLength={220} />
           </div>
 
           <div className="field">
             <label htmlFor="mbti">MBTI</label>
             <select id="mbti" name="mbti" required defaultValue="">
               <option value="" disabled>
-                선택해주세요
+                {copy.choose}
               </option>
               {mbtiTypes.map((type) => (
                 <option key={type} value={type}>
@@ -88,27 +143,25 @@ export default function ApplicantPage() {
           </div>
 
           <div className="field">
-            <label htmlFor="resume">이력서 파일</label>
+            <label htmlFor="resume">{copy.resume}</label>
             <input id="resume" name="resume" type="file" accept=".pdf,.doc,.docx,.hwp" required />
-            <p className="hint">PDF, DOC, DOCX, HWP 파일을 업로드할 수 있습니다. 기본 제한은 10MB입니다.</p>
+            <p className="hint">{copy.resumeHint}</p>
           </div>
 
           <div className="field full">
-            <label htmlFor="solution">손글씨 풀이 1장</label>
+            <label htmlFor="solution">{copy.solution}</label>
             <input id="solution" name="solution" type="file" accept=".pdf,.jpg,.jpeg,.png,.webp,.heic,.heif" required />
-            <p className="hint">
-              패드 필기, 노트 사진, 스캔본 모두 가능합니다. PDF, JPG, PNG, WEBP, HEIC 파일을 업로드해주세요.
-            </p>
+            <p className="hint">{copy.solutionHint}</p>
           </div>
         </div>
 
         <label className="consent">
           <input name="privacyConsent" type="checkbox" value="yes" required />
-          <span>지원 검토를 위한 개인정보 수집 및 제출 파일 보관에 동의합니다.</span>
+          <span>{copy.consent}</span>
         </label>
 
         <button className="primary-button" type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "제출 중..." : "지원서 제출"}
+          {isSubmitting ? copy.submitting : copy.submit}
         </button>
       </form>
     </main>
