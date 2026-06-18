@@ -459,6 +459,14 @@ td {
   font-size: 13px;
 }
 
+.long-text {
+  max-width: 320px;
+  min-width: 240px;
+  color: #dfe6ff;
+  line-height: 1.65;
+  white-space: pre-wrap;
+}
+
 .login-wrap {
   display: grid;
   min-height: 100vh;
@@ -520,6 +528,6 @@ td {
   }
 
   table {
-    min-width: 920px;
+    min-width: 1280px;
   }
 }

@@ -5,7 +5,10 @@ export type ApplicationRow = {
   id: string;
   name: string;
   phone: string;
+  school: string;
+  birth_year: string;
   address: string;
+  introduction: string;
   mbti: string;
   resume_path: string;
   original_file_name: string;

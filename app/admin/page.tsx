@@ -14,7 +14,7 @@ export default async function AdminPage() {
   const { data, error } = await getSupabaseAdmin()
     .from("applications")
     .select(
-      "id,name,phone,address,mbti,resume_path,original_file_name,solution_path,original_solution_file_name,created_at"
+      "id,name,phone,school,birth_year,address,introduction,mbti,resume_path,original_file_name,solution_path,original_solution_file_name,created_at"
     )
     .order("created_at", { ascending: false });
 

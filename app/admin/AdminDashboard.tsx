@@ -10,12 +10,15 @@ type Props = {
 
 const text = {
   search: "\uac80\uc0c9",
-  searchPlaceholder: "\uc774\ub984, \uc804\ud654\ubc88\ud638, MBTI \uac80\uc0c9",
+  searchPlaceholder: "\uc774\ub984, \uc804\ud654\ubc88\ud638, \ud559\uad50, MBTI \uac80\uc0c9",
   mbtiFilter: "MBTI \ud544\ud130",
   allMbti: "\uc804\uccb4 MBTI",
   name: "\uc774\ub984",
   phone: "\uc804\ud654\ubc88\ud638",
+  school: "\ud559\uad50",
+  birthYear: "\uba87\ub144\uc0dd",
   address: "\uc8fc\uc18c",
+  introduction: "\uc790\uae30\uc18c\uac1c",
   submittedAt: "\uc81c\ucd9c\uc77c\uc2dc",
   resume: "\uc774\ub825\uc11c",
   solution: "\uc190\uae00\uc528 \ud480\uc774",
@@ -43,6 +46,7 @@ export default function AdminDashboard({ applications }: Props) {
         !trimmedQuery ||
         application.name.toLowerCase().includes(trimmedQuery) ||
         application.phone.toLowerCase().includes(trimmedQuery) ||
+        application.school.toLowerCase().includes(trimmedQuery) ||
         application.mbti.toLowerCase().includes(trimmedQuery);
       const matchesMbti = !mbti || application.mbti === mbti;
       return matchesQuery && matchesMbti;
@@ -74,7 +78,10 @@ export default function AdminDashboard({ applications }: Props) {
             <tr>
               <th>{text.name}</th>
               <th>{text.phone}</th>
+              <th>{text.school}</th>
+              <th>{text.birthYear}</th>
               <th>{text.address}</th>
+              <th>{text.introduction}</th>
               <th>MBTI</th>
               <th>{text.submittedAt}</th>
               <th>{text.resume}</th>
@@ -86,7 +93,10 @@ export default function AdminDashboard({ applications }: Props) {
               <tr key={application.id}>
                 <td>{application.name}</td>
                 <td>{application.phone}</td>
+                <td>{application.school}</td>
+                <td>{application.birth_year}</td>
                 <td>{application.address}</td>
+                <td className="long-text">{application.introduction}</td>
                 <td>{application.mbti}</td>
                 <td>{formatDate(application.created_at)}</td>
                 <td>
@@ -109,7 +119,7 @@ export default function AdminDashboard({ applications }: Props) {
             ))}
             {filteredApplications.length === 0 ? (
               <tr>
-                <td colSpan={7} className="muted">
+                <td colSpan={10} className="muted">
                   {text.empty}
                 </td>
               </tr>

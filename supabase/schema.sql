@@ -4,7 +4,10 @@ create table if not exists public.applications (
   id uuid primary key default gen_random_uuid(),
   name text not null check (char_length(name) between 1 and 40),
   phone text not null,
+  school text not null default '',
+  birth_year text not null default '',
   address text not null check (char_length(address) between 1 and 220),
+  introduction text not null default '',
   mbti text not null check (mbti in (
     'INTJ','INTP','ENTJ','ENTP',
     'INFJ','INFP','ENFJ','ENFP',
@@ -17,6 +20,15 @@ create table if not exists public.applications (
   original_solution_file_name text not null,
   created_at timestamptz not null default now()
 );
+
+alter table public.applications
+  add column if not exists school text not null default '';
+
+alter table public.applications
+  add column if not exists birth_year text not null default '';
+
+alter table public.applications
+  add column if not exists introduction text not null default '';
 
 alter table public.applications
   add column if not exists solution_path text;

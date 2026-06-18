@@ -22,18 +22,29 @@ export async function POST(request: Request) {
     const formData = await request.formData();
     const name = readText(formData, "name");
     const phone = readText(formData, "phone");
+    const school = readText(formData, "school");
+    const birthYear = readText(formData, "birthYear");
     const address = readText(formData, "address");
+    const introduction = readText(formData, "introduction");
     const mbti = readText(formData, "mbti").toUpperCase();
     const privacyConsent = readText(formData, "privacyConsent");
     const resume = formData.get("resume");
     const solution = formData.get("solution");
 
-    if (!name || !phone || !address || !mbti) {
+    if (!name || !phone || !school || !birthYear || !address || !introduction || !mbti) {
       return NextResponse.json({ error: "필수 항목을 모두 입력해주세요." }, { status: 400 });
     }
 
     if (!isValidKoreanPhone(phone)) {
       return NextResponse.json({ error: "전화번호 형식을 확인해주세요." }, { status: 400 });
+    }
+
+    if (!/^(19|20)\d{2}$/.test(birthYear)) {
+      return NextResponse.json({ error: "몇년생은 4자리 출생연도로 입력해주세요." }, { status: 400 });
+    }
+
+    if (introduction.length > 900) {
+      return NextResponse.json({ error: "자기소개는 900자 이내로 입력해주세요." }, { status: 400 });
     }
 
     if (!mbtiTypes.includes(mbti as (typeof mbtiTypes)[number])) {
@@ -110,7 +121,10 @@ export async function POST(request: Request) {
     const { error: insertError } = await supabaseAdmin.from("applications").insert({
       name,
       phone,
+      school,
+      birth_year: birthYear,
       address,
+      introduction,
       mbti,
       resume_path: resumeStoragePath,
       original_file_name: resume.name,

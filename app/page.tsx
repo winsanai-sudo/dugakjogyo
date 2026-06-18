@@ -16,8 +16,15 @@ const copy = {
   name: "\uc774\ub984",
   namePlaceholder: "\ud64d\uae38\ub3d9",
   phone: "\uc804\ud654\ubc88\ud638",
+  school: "\ud559\uad50",
+  schoolPlaceholder: "\uc7ac\ud559/\uc878\uc5c5 \ud559\uad50\uba85",
+  birthYear: "\uba87\ub144\uc0dd",
+  birthYearPlaceholder: "2003",
   address: "\uc8fc\uc18c",
   addressPlaceholder: "\ub3c4\ub85c\uba85 \uc8fc\uc18c\uc640 \uc0c1\uc138 \uc8fc\uc18c",
+  introduction: "\uc790\uae30\uc18c\uac1c",
+  introductionPlaceholder:
+    "\ubb38\ud480 \uc120\uc0dd\ub2d8\uc73c\ub85c\uc11c\uc758 \uac15\uc810, \ud559\uc0dd\uc744 \ub300\ud558\ub294 \ubc29\uc2dd, \uac00\ub2a5\ud55c \uacfc\ubaa9/\uc2dc\uac04\ub300\ub97c \uac04\ub2e8\ud788 \uc801\uc5b4\uc8fc\uc138\uc694.",
   choose: "\uc120\ud0dd\ud574\uc8fc\uc138\uc694",
   resume: "\uc774\ub825\uc11c \ud30c\uc77c",
   resumeHint: "PDF, DOC, DOCX, HWP \ud30c\uc77c\uc744 \uc5c5\ub85c\ub4dc\ud560 \uc218 \uc788\uc2b5\ub2c8\ub2e4. \uae30\ubcf8 \uc81c\ud55c\uc740 10MB\uc785\ub2c8\ub2e4.",
@@ -123,9 +130,39 @@ export default function ApplicantPage() {
             />
           </div>
 
+          <div className="field">
+            <label htmlFor="school">{copy.school}</label>
+            <input id="school" name="school" placeholder={copy.schoolPlaceholder} required maxLength={80} />
+          </div>
+
+          <div className="field">
+            <label htmlFor="birthYear">{copy.birthYear}</label>
+            <input
+              id="birthYear"
+              name="birthYear"
+              placeholder={copy.birthYearPlaceholder}
+              inputMode="numeric"
+              required
+              minLength={4}
+              maxLength={4}
+            />
+          </div>
+
           <div className="field full">
             <label htmlFor="address">{copy.address}</label>
             <textarea id="address" name="address" placeholder={copy.addressPlaceholder} required maxLength={220} />
+          </div>
+
+          <div className="field full">
+            <label htmlFor="introduction">{copy.introduction}</label>
+            <textarea
+              id="introduction"
+              name="introduction"
+              placeholder={copy.introductionPlaceholder}
+              required
+              maxLength={900}
+            />
+            <p className="hint">900\uc790 \uc774\ub0b4\ub85c \uc791\uc131\ud574\uc8fc\uc138\uc694.</p>
           </div>
 
           <div className="field">
