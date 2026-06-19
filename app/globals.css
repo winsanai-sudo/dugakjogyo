@@ -25,6 +25,7 @@
 body {
   margin: 0;
   min-height: 100vh;
+  overflow-x: hidden;
   background:
     linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px),
@@ -268,6 +269,7 @@ textarea {
   color: var(--text);
   padding: 15px 16px;
   outline: none;
+  overflow-wrap: anywhere;
 }
 
 input::file-selector-button {
@@ -491,8 +493,8 @@ td {
 
 @media (max-width: 760px) {
   .page-shell {
-    width: min(100% - 22px, 1120px);
-    padding: 24px 0;
+    width: min(100% - 18px, 1120px);
+    padding: 18px 0 30px;
   }
 
   .grid,
@@ -500,22 +502,127 @@ td {
     grid-template-columns: 1fr;
   }
 
+  .hero {
+    gap: 22px;
+    margin-bottom: 16px;
+  }
+
+  .brand-row {
+    gap: 11px;
+  }
+
+  .brand-mark {
+    width: 40px;
+    height: 40px;
+  }
+
   .hero-layout {
     grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .hero-copy {
+    gap: 14px;
+  }
+
+  .hero-badge,
+  .section-label,
+  .required-note {
+    max-width: 100%;
+    padding: 7px 10px;
+    white-space: normal;
+  }
+
+  h1 {
+    font-size: 34px;
+    line-height: 1.08;
+  }
+
+  .lead {
+    font-size: 16px;
+    line-height: 1.62;
+  }
+
+  .sub-lead {
+    font-size: 14px;
+    line-height: 1.58;
   }
 
   .hero-panel {
-    min-height: 210px;
+    min-height: 154px;
+    padding: 18px;
   }
 
   .panel-score {
-    margin-top: 28px;
-    font-size: 68px;
+    margin-top: 18px;
+    font-size: 54px;
+  }
+
+  .panel-line {
+    margin: 18px 0;
+  }
+
+  .form-card {
+    padding: 18px;
   }
 
   .form-header {
     align-items: flex-start;
     flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 18px;
+  }
+
+  .form-header h2 {
+    font-size: 24px;
+  }
+
+  .field {
+    gap: 8px;
+  }
+
+  input,
+  select,
+  textarea {
+    min-height: 56px;
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  textarea {
+    min-height: 118px;
+  }
+
+  input[type="file"] {
+    min-height: auto;
+    padding: 12px;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  input::file-selector-button {
+    display: block;
+    width: 100%;
+    margin: 0 0 10px;
+    padding: 11px 12px;
+  }
+
+  .hint {
+    font-size: 12px;
+  }
+
+  .consent {
+    gap: 10px;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+
+  .primary-button,
+  .secondary-button,
+  .danger-button {
+    min-height: 54px;
+    padding: 0 16px;
   }
 
   .admin-top {
@@ -525,9 +632,60 @@ td {
 
   .table-card {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   table {
     min-width: 1280px;
+  }
+
+  .login-wrap,
+  .success-wrap {
+    align-items: start;
+    padding: 16px 9px;
+  }
+
+  .login-card,
+  .success-card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 420px) {
+  .page-shell {
+    width: min(100% - 14px, 1120px);
+    padding-top: 14px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  .brand-name {
+    font-size: 16px;
+  }
+
+  .kicker {
+    font-size: 11px;
+  }
+
+  .hero-panel {
+    min-height: 132px;
+  }
+
+  .panel-score {
+    font-size: 46px;
+  }
+
+  .form-card {
+    padding: 15px;
+  }
+
+  .form-header h2 {
+    font-size: 22px;
+  }
+
+  label {
+    font-size: 14px;
   }
 }
