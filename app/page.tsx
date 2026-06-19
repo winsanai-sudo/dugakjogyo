@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { mbtiTypes } from "@/lib/validation";
 
 const copy = {
-  title: "\ub300\uce58 \ub450\uac01\ud559\uc6d0 \ubb38\ud480 \uc120\uc0dd\ub2d8 \uc9c0\uc6d0",
+  title: "\ub300\uce58 \ub450\uac01\ud559\uc6d0\n\ubb38\ud480 \uc120\uc0dd\ub2d8 \uc9c0\uc6d0",
   eyebrow: "DUGAK ACADEMY RECRUIT",
   brand: "\ub450\uac01",
   badge: "\ubb38\ud480 \uc120\uc0dd\ub2d8 \ucc44\uc6a9",
