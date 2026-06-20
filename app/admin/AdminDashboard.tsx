@@ -19,12 +19,26 @@ const text = {
   birthYear: "\uba87\ub144\uc0dd",
   address: "\uc8fc\uc18c",
   introduction: "\uc790\uae30\uc18c\uac1c",
+  lessonTypes: "\ubb38\ud480 \uc885\ub958",
   submittedAt: "\uc81c\ucd9c\uc77c\uc2dc",
   resume: "\uc774\ub825\uc11c",
   solution: "\uc190\uae00\uc528 \ud480\uc774",
   download: "\ub2e4\uc6b4\ub85c\ub4dc",
   empty: "\ud45c\uc2dc\ud560 \uc9c0\uc6d0\uc790\uac00 \uc5c6\uc2b5\ub2c8\ub2e4."
 };
+
+const lessonTypeLabels: Record<string, string> = {
+  probability_statistics: "\ud655\ub960\uacfc\ud1b5\uacc4 · \uc624\ud6c4 1:30",
+  calculus1: "\ubbf8\uc801\ubd841 · \uc800\ub141 6:30"
+};
+
+function formatLessonTypes(values?: string[] | null) {
+  if (!values?.length) {
+    return "-";
+  }
+
+  return values.map((value) => lessonTypeLabels[value] ?? value).join("\n");
+}
 
 function formatDate(value: string) {
   return new Intl.DateTimeFormat("ko-KR", {
@@ -47,6 +61,7 @@ export default function AdminDashboard({ applications }: Props) {
         application.name.toLowerCase().includes(trimmedQuery) ||
         application.phone.toLowerCase().includes(trimmedQuery) ||
         application.school.toLowerCase().includes(trimmedQuery) ||
+        formatLessonTypes(application.lesson_types).toLowerCase().includes(trimmedQuery) ||
         application.mbti.toLowerCase().includes(trimmedQuery);
       const matchesMbti = !mbti || application.mbti === mbti;
       return matchesQuery && matchesMbti;
@@ -82,6 +97,7 @@ export default function AdminDashboard({ applications }: Props) {
               <th>{text.birthYear}</th>
               <th>{text.address}</th>
               <th>{text.introduction}</th>
+              <th>{text.lessonTypes}</th>
               <th>MBTI</th>
               <th>{text.submittedAt}</th>
               <th>{text.resume}</th>
@@ -97,6 +113,7 @@ export default function AdminDashboard({ applications }: Props) {
                 <td>{application.birth_year}</td>
                 <td>{application.address}</td>
                 <td className="long-text">{application.introduction}</td>
+                <td className="lesson-cell">{formatLessonTypes(application.lesson_types)}</td>
                 <td>{application.mbti}</td>
                 <td>{formatDate(application.created_at)}</td>
                 <td>
@@ -119,7 +136,7 @@ export default function AdminDashboard({ applications }: Props) {
             ))}
             {filteredApplications.length === 0 ? (
               <tr>
-                <td colSpan={10} className="muted">
+                <td colSpan={11} className="muted">
                   {text.empty}
                 </td>
               </tr>

@@ -259,6 +259,18 @@ label {
   font-weight: 900;
 }
 
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+legend {
+  color: #edf1ff;
+  font-size: 15px;
+  font-weight: 900;
+}
+
 input,
 select,
 textarea {
@@ -300,6 +312,56 @@ textarea:focus {
   color: var(--muted);
   font-size: 13px;
   line-height: 1.55;
+}
+
+.choice-field {
+  gap: 12px;
+}
+
+.choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.choice-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px;
+  min-height: 78px;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 8px;
+  background: rgba(4, 7, 18, 0.72);
+  padding: 14px;
+  cursor: pointer;
+}
+
+.choice-card input {
+  width: 20px;
+  min-height: 20px;
+  accent-color: var(--dugak-yellow);
+}
+
+.choice-card span {
+  display: grid;
+  gap: 5px;
+}
+
+.choice-card strong {
+  color: var(--text);
+  font-size: 15px;
+}
+
+.choice-card small {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.choice-card:has(input:checked) {
+  border-color: rgba(255, 238, 90, 0.64);
+  background: rgba(255, 238, 90, 0.08);
 }
 
 .consent {
@@ -470,6 +532,14 @@ td {
   white-space: pre-wrap;
 }
 
+.lesson-cell {
+  min-width: 150px;
+  color: #fff6a4;
+  font-weight: 850;
+  line-height: 1.55;
+  white-space: pre-line;
+}
+
 .login-wrap {
   display: grid;
   min-height: 100vh;
@@ -499,6 +569,7 @@ td {
   }
 
   .grid,
+  .choice-grid,
   .toolbar {
     grid-template-columns: 1fr;
   }
@@ -637,7 +708,7 @@ td {
   }
 
   table {
-    min-width: 1280px;
+    min-width: 1400px;
   }
 
   .login-wrap,
@@ -687,6 +758,10 @@ td {
   }
 
   label {
+    font-size: 14px;
+  }
+
+  legend {
     font-size: 14px;
   }
 }

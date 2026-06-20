@@ -25,6 +25,12 @@ const copy = {
   introduction: "\uc790\uae30\uc18c\uac1c",
   introductionPlaceholder:
     "\ubb38\ud480 \uc120\uc0dd\ub2d8\uc73c\ub85c\uc11c\uc758 \uac15\uc810, \ud559\uc0dd\uc744 \ub300\ud558\ub294 \ubc29\uc2dd, \uac00\ub2a5\ud55c \uacfc\ubaa9/\uc2dc\uac04\ub300\ub97c \uac04\ub2e8\ud788 \uc801\uc5b4\uc8fc\uc138\uc694.",
+  lessonTypes: "\uac00\ub2a5\ud55c \ubb38\ud480 \uc885\ub958",
+  lessonHint: "\ub458 \ub2e4 \uac00\ub2a5\ud558\uba74 \ub450 \uac00\uc9c0\ub97c \ubaa8\ub450 \uccb4\ud06c\ud574\uc8fc\uc138\uc694.",
+  probabilityStatistics: "\ud655\ub960\uacfc\ud1b5\uacc4",
+  probabilityStatisticsTime: "\uc624\ud6c4 \ubb38\ud480 · 1\uc2dc 30\ubd84 \uc2dc\uc791",
+  calculus1: "\ubbf8\uc801\ubd841",
+  calculus1Time: "\uc800\ub141 \ubb38\ud480 · 6\uc2dc 30\ubd84 \uc2dc\uc791",
   choose: "\uc120\ud0dd\ud574\uc8fc\uc138\uc694",
   resume: "\uc774\ub825\uc11c \ud30c\uc77c",
   resumeHint: "PDF, DOC, DOCX, HWP \ud30c\uc77c\uc744 \uc5c5\ub85c\ub4dc\ud560 \uc218 \uc788\uc2b5\ub2c8\ub2e4. \uae30\ubcf8 \uc81c\ud55c\uc740 10MB\uc785\ub2c8\ub2e4.",
@@ -164,6 +170,27 @@ export default function ApplicantPage() {
             />
             <p className="hint">900\uc790 \uc774\ub0b4\ub85c \uc791\uc131\ud574\uc8fc\uc138\uc694.</p>
           </div>
+
+          <fieldset className="field full choice-field">
+            <legend>{copy.lessonTypes}</legend>
+            <div className="choice-grid">
+              <label className="choice-card">
+                <input name="lessonTypes" type="checkbox" value="probability_statistics" />
+                <span>
+                  <strong>{copy.probabilityStatistics}</strong>
+                  <small>{copy.probabilityStatisticsTime}</small>
+                </span>
+              </label>
+              <label className="choice-card">
+                <input name="lessonTypes" type="checkbox" value="calculus1" />
+                <span>
+                  <strong>{copy.calculus1}</strong>
+                  <small>{copy.calculus1Time}</small>
+                </span>
+              </label>
+            </div>
+            <p className="hint">{copy.lessonHint}</p>
+          </fieldset>
 
           <div className="field">
             <label htmlFor="mbti">MBTI</label>

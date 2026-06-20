@@ -9,6 +9,7 @@ export type ApplicationRow = {
   birth_year: string;
   address: string;
   introduction: string;
+  lesson_types: string[] | null;
   mbti: string;
   resume_path: string;
   original_file_name: string;

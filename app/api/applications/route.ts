@@ -6,6 +6,7 @@ import {
   getFileExtension,
   isAllowedResumeFile,
   isAllowedSolutionFile,
+  isValidLessonType,
   isValidKoreanPhone,
   mbtiTypes
 } from "@/lib/validation";
@@ -26,6 +27,7 @@ export async function POST(request: Request) {
     const birthYear = readText(formData, "birthYear");
     const address = readText(formData, "address");
     const introduction = readText(formData, "introduction");
+    const lessonTypes = formData.getAll("lessonTypes").filter((value): value is string => typeof value === "string");
     const mbti = readText(formData, "mbti").toUpperCase();
     const privacyConsent = readText(formData, "privacyConsent");
     const resume = formData.get("resume");
@@ -45,6 +47,10 @@ export async function POST(request: Request) {
 
     if (introduction.length > 900) {
       return NextResponse.json({ error: "자기소개는 900자 이내로 입력해주세요." }, { status: 400 });
+    }
+
+    if (lessonTypes.length === 0 || lessonTypes.some((lessonType) => !isValidLessonType(lessonType))) {
+      return NextResponse.json({ error: "가능한 문풀 종류를 선택해주세요." }, { status: 400 });
     }
 
     if (!mbtiTypes.includes(mbti as (typeof mbtiTypes)[number])) {
@@ -125,6 +131,7 @@ export async function POST(request: Request) {
       birth_year: birthYear,
       address,
       introduction,
+      lesson_types: lessonTypes,
       mbti,
       resume_path: resumeStoragePath,
       original_file_name: resume.name,

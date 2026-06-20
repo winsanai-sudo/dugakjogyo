@@ -8,6 +8,7 @@ create table if not exists public.applications (
   birth_year text not null default '',
   address text not null check (char_length(address) between 1 and 220),
   introduction text not null default '',
+  lesson_types text[] not null default '{}'::text[],
   mbti text not null check (mbti in (
     'INTJ','INTP','ENTJ','ENTP',
     'INFJ','INFP','ENFJ','ENFP',
@@ -29,6 +30,9 @@ alter table public.applications
 
 alter table public.applications
   add column if not exists introduction text not null default '';
+
+alter table public.applications
+  add column if not exists lesson_types text[] not null default '{}'::text[];
 
 alter table public.applications
   add column if not exists solution_path text;

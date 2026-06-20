@@ -19,6 +19,11 @@ export const mbtiTypes = [
 
 export const allowedResumeExtensions = [".pdf", ".doc", ".docx", ".hwp"];
 export const allowedSolutionExtensions = [".pdf", ".jpg", ".jpeg", ".png", ".webp", ".heic", ".heif"];
+export const lessonTypes = ["probability_statistics", "calculus1"] as const;
+
+export function isValidLessonType(value: string) {
+  return lessonTypes.includes(value as (typeof lessonTypes)[number]);
+}
 
 export function normalizePhone(phone: string) {
   return phone.replace(/[^\d]/g, "");
