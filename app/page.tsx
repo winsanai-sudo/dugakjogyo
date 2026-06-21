@@ -99,10 +99,10 @@ export default function ApplicantPage() {
             <p className="sub-lead">{copy.subLead}</p>
           </div>
           <div className="hero-panel" aria-hidden="true">
-            <div className="panel-label">DUGAK STANDARD</div>
-            <div className="panel-score">01</div>
+            <div className="panel-label">CLASS OPTIONS</div>
+            <div className="panel-score">2</div>
             <div className="panel-line" />
-            <div className="panel-caption">Precision Feedback · Student Growth</div>
+            <div className="panel-caption">확률과통계 오후 1:30 · 미적분1 저녁 6:30</div>
           </div>
         </div>
       </section>
@@ -168,7 +168,7 @@ export default function ApplicantPage() {
               required
               maxLength={900}
             />
-            <p className="hint">900\uc790 \uc774\ub0b4\ub85c \uc791\uc131\ud574\uc8fc\uc138\uc694.</p>
+            <p className="hint">900자 이내로 작성해주세요.</p>
           </div>
 
           <fieldset className="field full choice-field">
